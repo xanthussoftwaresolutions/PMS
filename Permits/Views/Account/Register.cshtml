@@ -1,0 +1,101 @@
+﻿@model Permits.DataAccess.Managers.UserSignUpView
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12 form-content" id="create_rma">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding_none">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 header_citation">
+                            Create User
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_citation">
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <label for="inputdefault"> First Name<span class="red_color">*</span></label>
+                                @*<input class="form-control input-sm" id="input-sm" type="text" placeholder="First Name">*@
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <label for="inputdefault"> Last Name<span class="red_color">*</span></label>
+                                @*<input class="form-control input-sm" id="input-sm" type="text" placeholder="Last Name">*@
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                            @*<div class="form-group  col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <label for="sel1">Address<span class="red_color">*</span></label>
+                                    <input class="form-control input-sm" id="input-sm" type="text" placeholder="Address">
+                                </div>*@
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_citation margin_top_one">
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <label for="inputdefault">  Email Address<span class="red_color">*</span></label>
+                                @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <label for="inputdefault"> Phone Number<span class="red_color"></span></label>
+                                @*<input class="form-control input-sm" id="input-sm" type="text" placeholder="Password">*@
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone Number" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                           
+                        </div>
+                   
+                      
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_citation margin_top_one">
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <label for="inputdefault">Role<span class="red_color">*</span></label>
+                                @*@Html.DropDownList("Role", new SelectList(new[] { "Select", "IPS Admin", "City Staff Admin", "Public Portal User" }), new { @class = "form-control  col-lg-10" })*@
+                                @Html.DropDownListFor(o => o.RoleID,
+                                new SelectList(Model.UserRoles.UserRoleList, "RoleID", "RoleName"),
+                                 "Select",
+                                 new { id = "ddlRoles", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RoleID, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <label for="inputdefault">Agency<span class="red_color">*</span></label>
+                                @*<input class="form-control input-sm" id="input-sm" type="text" placeholder="Password">*@
+                               
+                                @Html.DropDownListFor(o => o.AgencyID,
+                                new SelectList(Model.Agency.AgencyList, "AgencyID", "Name"),
+                                 "Select",
+                                 new { id = "ddlRoles", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AgencyID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        @*<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_citation margin_top_one">
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                <label for="inputdefault">Gender<span class="red_color">*</span></label>
+                                @Html.DropDownListFor(o => o.Gender,
+                               new SelectList(Model.UserGender.Gender, "Value", "Text"),
+                                "Select",
+                                 new { id = "ddlGender", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                               
+                            </div>
+
+                        </div>*@
+
+                      
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-left margin_top padding_left">
+                            <button class="btn btn_save" style="margin: 0px 5px 0 0px;">Save</button>
+                            <button class="btn btn_cancel">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+}

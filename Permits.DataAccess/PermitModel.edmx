@@ -1,0 +1,1462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PermitsConfigurationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agency">
+          <Key>
+            <PropertyRef Name="AgencyID" />
+          </Key>
+          <Property Name="AgencyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Department" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="County" Type="nvarchar" MaxLength="255" />
+          <Property Name="Country" Type="nvarchar" MaxLength="255" />
+          <Property Name="PriorVendor" Type="nvarchar" MaxLength="255" />
+          <Property Name="EstimatedAnnualVolume" Type="int" />
+          <Property Name="CurrentAnnualVolume" Type="int" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedById" Type="int" />
+          <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AgencyPreferences">
+          <Key>
+            <PropertyRef Name="AgencyPreferencesID" />
+          </Key>
+          <Property Name="AgencyPreferencesID" Type="int" Nullable="false" />
+          <Property Name="AgencyID" Type="int" Nullable="false" />
+          <Property Name="ServerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Username" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="Port" Type="int" />
+          <Property Name="ValidationEngineName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ValidationClassName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="AuditLogID" />
+          </Key>
+          <Property Name="AuditLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FieldName" Type="nvarchar" MaxLength="100" />
+          <Property Name="OldValue" Type="nvarchar" MaxLength="100" />
+          <Property Name="NewValue" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BusinessRule">
+          <Key>
+            <PropertyRef Name="BusinessRuleID" />
+          </Key>
+          <Property Name="BusinessRuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="BusinessFunction" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="MaxLimit" Type="int" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WebUserID" Type="int" />
+          <Property Name="CarMake" Type="varchar" MaxLength="50" />
+          <Property Name="CarModel" Type="varchar" MaxLength="50" />
+          <Property Name="CarColor" Type="varchar" MaxLength="50" />
+          <Property Name="CarYear" Type="int" />
+          <Property Name="CarLicense" Type="varchar" MaxLength="50" />
+          <Property Name="CarState" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="WebUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CardName" Type="varchar" MaxLength="50" />
+          <Property Name="CardNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TokenizedCardNumber" Type="numeric" Precision="20" Scale="0" />
+          <Property Name="CardExpiryMonth" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="CardExpiryYear" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CardFirstSix" Type="varchar" MaxLength="6" />
+          <Property Name="CardLastFour" Type="varchar" MaxLength="4" />
+          <Property Name="CardType" Type="varchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+          <Property Name="CVV" Type="int" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+          <Property Name="IsDefault" Type="bit" />
+          <Property Name="ParentCardId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="CarMake">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CarMakeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CarMakeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CarModelName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="DocumentID" />
+          </Key>
+          <Property Name="DocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentDescription" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentProofType">
+          <Key>
+            <PropertyRef Name="DocumentProofTypeID" />
+          </Key>
+          <Property Name="DocumentProofTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentID" Type="int" Nullable="false" />
+          <Property Name="ProofTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermitSubType">
+          <Key>
+            <PropertyRef Name="PermitSubTypeID" />
+          </Key>
+          <Property Name="PermitSubTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermitTypeID" Type="int" Nullable="false" />
+          <Property Name="PermitSubTypeDescription" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="PermitDuration" Type="int" />
+          <Property Name="PermitDurationUnit" Type="nvarchar" MaxLength="50" />
+          <Property Name="PermitPrice" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="PermitSubTypeBusinessRule">
+          <Key>
+            <PropertyRef Name="PermitSubTypeBusinessRuleID" />
+          </Key>
+          <Property Name="PermitSubTypeBusinessRuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BusinessRuleID" Type="int" Nullable="false" />
+          <Property Name="PermitSubTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PermitSubTypeProof">
+          <Key>
+            <PropertyRef Name="PermitSubTypeProofID" />
+          </Key>
+          <Property Name="PermitSubTypeProofID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermitSubTypeID" Type="int" Nullable="false" />
+          <Property Name="ProofTypeID" Type="int" Nullable="false" />
+          <Property Name="IsMandatory" Type="bit" />
+        </EntityType>
+        <EntityType Name="PermitSubTypeZone">
+          <Key>
+            <PropertyRef Name="PermitSubTypeZoneID" />
+          </Key>
+          <Property Name="PermitSubTypeZoneID" Type="int" Nullable="false" />
+          <Property Name="PermitSubTypeID" Type="int" Nullable="false" />
+          <Property Name="ZoneID" Type="int" Nullable="false" />
+          <Property Name="MaxPermitCount" Type="int" />
+        </EntityType>
+        <EntityType Name="PermitType">
+          <Key>
+            <PropertyRef Name="PermitTypeID" />
+          </Key>
+          <Property Name="PermitTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermitTypeDescription" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="AgencyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProofType">
+          <Key>
+            <PropertyRef Name="ProofTypeID" />
+          </Key>
+          <Property Name="ProofTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProofTypeDescription" Type="varchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="AgencyId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedById" Type="int" />
+          <Property Name="UpdatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedById" Type="int" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StateAbbr" Type="varchar" MaxLength="50" />
+          <Property Name="StateName" Type="varchar" MaxLength="500" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Template">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="TemplateType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TemplateContent" Type="varchar" MaxLength="2500" Nullable="false" />
+          <Property Name="AgencyID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedByUserID" Type="int" />
+          <Property Name="ModifiedByUserID" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebUser">
+          <Key>
+            <PropertyRef Name="WebUserID" />
+          </Key>
+          <Property Name="WebUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgencyID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="varchar" MaxLength="10" />
+          <Property Name="Network" Type="varchar" MaxLength="50" />
+          <Property Name="DateTimeCreated" Type="datetime" />
+          <Property Name="DateTimeModified" Type="datetime" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="EmailOption" Type="bit" />
+          <Property Name="Salt" Type="varchar" MaxLength="10" />
+          <Property Name="DateTimePasswordModified" Type="datetime" />
+          <Property Name="ForcePasswordChange" Type="bit" />
+          <Property Name="OldPassword" Type="varchar" MaxLength="255" />
+          <Property Name="RoleID" Type="int" />
+        </EntityType>
+        <EntityType Name="WebUserLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WebUserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AuthToken" Type="varchar" MaxLength="1000" />
+          <Property Name="StartDateTime" Type="datetime" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="DeviceID" Type="varchar" MaxLength="1000" />
+          <Property Name="DeviceType" Type="tinyint" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UpdatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="ZoneID" />
+          </Key>
+          <Property Name="ZoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZoneName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Car_WebUser">
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUser">
+              <PropertyRef Name="WebUserID" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="WebUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarModel_CarMake">
+          <End Role="CarMake" Type="Self.CarMake" Multiplicity="1" />
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarMake">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarModel">
+              <PropertyRef Name="CarMakeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentProofType_Document">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="DocumentProofType" Type="Self.DocumentProofType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="DocumentID" />
+            </Principal>
+            <Dependent Role="DocumentProofType">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentProofType_ProofType">
+          <End Role="ProofType" Type="Self.ProofType" Multiplicity="1" />
+          <End Role="DocumentProofType" Type="Self.DocumentProofType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProofType">
+              <PropertyRef Name="ProofTypeID" />
+            </Principal>
+            <Dependent Role="DocumentProofType">
+              <PropertyRef Name="ProofTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubType_PermitType">
+          <End Role="PermitType" Type="Self.PermitType" Multiplicity="1" />
+          <End Role="PermitSubType" Type="Self.PermitSubType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermitType">
+              <PropertyRef Name="PermitTypeID" />
+            </Principal>
+            <Dependent Role="PermitSubType">
+              <PropertyRef Name="PermitTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeBusinessRule_PermitSubType">
+          <End Role="PermitSubType" Type="Self.PermitSubType" Multiplicity="1" />
+          <End Role="PermitSubTypeBusinessRule" Type="Self.PermitSubTypeBusinessRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermitSubType">
+              <PropertyRef Name="PermitSubTypeID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeBusinessRule">
+              <PropertyRef Name="PermitSubTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeBusinessRule_PermitSubTypeBusinessRule">
+          <End Role="BusinessRule" Type="Self.BusinessRule" Multiplicity="1" />
+          <End Role="PermitSubTypeBusinessRule" Type="Self.PermitSubTypeBusinessRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessRule">
+              <PropertyRef Name="BusinessRuleID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeBusinessRule">
+              <PropertyRef Name="BusinessRuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeProof_PermitSubType">
+          <End Role="PermitSubType" Type="Self.PermitSubType" Multiplicity="1" />
+          <End Role="PermitSubTypeProof" Type="Self.PermitSubTypeProof" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermitSubType">
+              <PropertyRef Name="PermitSubTypeID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeProof">
+              <PropertyRef Name="PermitSubTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeProof_ProofType">
+          <End Role="ProofType" Type="Self.ProofType" Multiplicity="1" />
+          <End Role="PermitSubTypeProof" Type="Self.PermitSubTypeProof" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProofType">
+              <PropertyRef Name="ProofTypeID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeProof">
+              <PropertyRef Name="ProofTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeZone_Zone">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="1" />
+          <End Role="PermitSubTypeZone" Type="Self.PermitSubTypeZone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ZoneID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeZone">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Roles_Agency">
+          <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRoles_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRoles_WebUser">
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUser">
+              <PropertyRef Name="WebUserID" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUser_Agency">
+          <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="WebUser">
+              <PropertyRef Name="AgencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUser_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WebUser">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PermitsConfigurationModelStoreContainer">
+          <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgencyPreferences" EntityType="Self.AgencyPreferences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuditLog" EntityType="Self.AuditLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusinessRule" EntityType="Self.BusinessRule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarMake" EntityType="Self.CarMake" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarModel" EntityType="Self.CarModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentProofType" EntityType="Self.DocumentProofType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermitSubType" EntityType="Self.PermitSubType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermitSubTypeBusinessRule" EntityType="Self.PermitSubTypeBusinessRule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermitSubTypeProof" EntityType="Self.PermitSubTypeProof" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermitSubTypeZone" EntityType="Self.PermitSubTypeZone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PermitType" EntityType="Self.PermitType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProofType" EntityType="Self.ProofType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Template" EntityType="Self.Template" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebUser" EntityType="Self.WebUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WebUserLogin" EntityType="Self.WebUserLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zone" EntityType="Self.Zone" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Car_WebUser" Association="Self.FK_Car_WebUser">
+            <End Role="WebUser" EntitySet="WebUser" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarModel_CarMake" Association="Self.FK_CarModel_CarMake">
+            <End Role="CarMake" EntitySet="CarMake" />
+            <End Role="CarModel" EntitySet="CarModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentProofType_Document" Association="Self.FK_DocumentProofType_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="DocumentProofType" EntitySet="DocumentProofType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentProofType_ProofType" Association="Self.FK_DocumentProofType_ProofType">
+            <End Role="ProofType" EntitySet="ProofType" />
+            <End Role="DocumentProofType" EntitySet="DocumentProofType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubType_PermitType" Association="Self.FK_PermitSubType_PermitType">
+            <End Role="PermitType" EntitySet="PermitType" />
+            <End Role="PermitSubType" EntitySet="PermitSubType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeBusinessRule_PermitSubType" Association="Self.FK_PermitSubTypeBusinessRule_PermitSubType">
+            <End Role="PermitSubType" EntitySet="PermitSubType" />
+            <End Role="PermitSubTypeBusinessRule" EntitySet="PermitSubTypeBusinessRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeBusinessRule_PermitSubTypeBusinessRule" Association="Self.FK_PermitSubTypeBusinessRule_PermitSubTypeBusinessRule">
+            <End Role="BusinessRule" EntitySet="BusinessRule" />
+            <End Role="PermitSubTypeBusinessRule" EntitySet="PermitSubTypeBusinessRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeProof_PermitSubType" Association="Self.FK_PermitSubTypeProof_PermitSubType">
+            <End Role="PermitSubType" EntitySet="PermitSubType" />
+            <End Role="PermitSubTypeProof" EntitySet="PermitSubTypeProof" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeProof_ProofType" Association="Self.FK_PermitSubTypeProof_ProofType">
+            <End Role="ProofType" EntitySet="ProofType" />
+            <End Role="PermitSubTypeProof" EntitySet="PermitSubTypeProof" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeZone_Zone" Association="Self.FK_PermitSubTypeZone_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="PermitSubTypeZone" EntitySet="PermitSubTypeZone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Roles_Agency" Association="Self.FK_Roles_Agency">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRoles_Roles" Association="Self.FK_UserRoles_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRoles_WebUser" Association="Self.FK_UserRoles_WebUser">
+            <End Role="WebUser" EntitySet="WebUser" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUser_Agency" Association="Self.FK_WebUser_Agency">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="WebUser" EntitySet="WebUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUser_Roles" Association="Self.FK_WebUser_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="WebUser" EntitySet="WebUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PermitsConfigurationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agency">
+          <Key>
+            <PropertyRef Name="AgencyID" />
+          </Key>
+          <Property Name="AgencyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="County" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PriorVendor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EstimatedAnnualVolume" Type="Int32" />
+          <Property Name="CurrentAnnualVolume" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedById" Type="Int32" />
+          <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Roles_Agency" FromRole="Agency" ToRole="Roles" />
+          <NavigationProperty Name="WebUser" Relationship="Self.FK_WebUser_Agency" FromRole="Agency" ToRole="WebUser" />
+        </EntityType>
+        <EntityType Name="AgencyPreferences">
+          <Key>
+            <PropertyRef Name="AgencyPreferencesID" />
+          </Key>
+          <Property Name="AgencyPreferencesID" Type="Int32" Nullable="false" />
+          <Property Name="AgencyID" Type="Int32" Nullable="false" />
+          <Property Name="ServerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" />
+          <Property Name="ValidationEngineName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ValidationClassName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AuditLog">
+          <Key>
+            <PropertyRef Name="AuditLogID" />
+          </Key>
+          <Property Name="AuditLogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FieldName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OldValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BusinessRule">
+          <Key>
+            <PropertyRef Name="BusinessRuleID" />
+          </Key>
+          <Property Name="BusinessRuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BusinessFunction" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaxLimit" Type="Int32" />
+          <NavigationProperty Name="PermitSubTypeBusinessRule" Relationship="Self.FK_PermitSubTypeBusinessRule_PermitSubTypeBusinessRule" FromRole="BusinessRule" ToRole="PermitSubTypeBusinessRule" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WebUserID" Type="Int32" />
+          <Property Name="CarMake" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CarModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CarColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CarYear" Type="Int32" />
+          <Property Name="CarLicense" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CarState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="WebUser" Relationship="Self.FK_Car_WebUser" FromRole="Car" ToRole="WebUser" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WebUserID" Type="Guid" Nullable="false" />
+          <Property Name="CardName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TokenizedCardNumber" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="CardExpiryMonth" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="CardExpiryYear" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CardFirstSix" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="CardLastFour" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CardType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CVV" Type="Int32" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsDefault" Type="Boolean" />
+          <Property Name="ParentCardId" Type="Guid" />
+        </EntityType>
+        <EntityType Name="CarMake">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CarMakeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CarModel" Relationship="Self.FK_CarModel_CarMake" FromRole="CarMake" ToRole="CarModel" />
+        </EntityType>
+        <EntityType Name="CarModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CarMakeId" Type="Guid" Nullable="false" />
+          <Property Name="CarModelName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CarMake" Relationship="Self.FK_CarModel_CarMake" FromRole="CarModel" ToRole="CarMake" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="DocumentID" />
+          </Key>
+          <Property Name="DocumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DocumentProofType" Relationship="Self.FK_DocumentProofType_Document" FromRole="Document" ToRole="DocumentProofType" />
+        </EntityType>
+        <EntityType Name="DocumentProofType">
+          <Key>
+            <PropertyRef Name="DocumentProofTypeID" />
+          </Key>
+          <Property Name="DocumentProofTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentID" Type="Int32" Nullable="false" />
+          <Property Name="ProofTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Document" Relationship="Self.FK_DocumentProofType_Document" FromRole="DocumentProofType" ToRole="Document" />
+          <NavigationProperty Name="ProofType" Relationship="Self.FK_DocumentProofType_ProofType" FromRole="DocumentProofType" ToRole="ProofType" />
+        </EntityType>
+        <EntityType Name="PermitSubType">
+          <Key>
+            <PropertyRef Name="PermitSubTypeID" />
+          </Key>
+          <Property Name="PermitSubTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermitTypeID" Type="Int32" Nullable="false" />
+          <Property Name="PermitSubTypeDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PermitDuration" Type="Int32" />
+          <Property Name="PermitDurationUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PermitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="PermitType" Relationship="Self.FK_PermitSubType_PermitType" FromRole="PermitSubType" ToRole="PermitType" />
+          <NavigationProperty Name="PermitSubTypeBusinessRule" Relationship="Self.FK_PermitSubTypeBusinessRule_PermitSubType" FromRole="PermitSubType" ToRole="PermitSubTypeBusinessRule" />
+          <NavigationProperty Name="PermitSubTypeProof" Relationship="Self.FK_PermitSubTypeProof_PermitSubType" FromRole="PermitSubType" ToRole="PermitSubTypeProof" />
+        </EntityType>
+        <EntityType Name="PermitSubTypeBusinessRule">
+          <Key>
+            <PropertyRef Name="PermitSubTypeBusinessRuleID" />
+          </Key>
+          <Property Name="PermitSubTypeBusinessRuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BusinessRuleID" Type="Int32" Nullable="false" />
+          <Property Name="PermitSubTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BusinessRule" Relationship="Self.FK_PermitSubTypeBusinessRule_PermitSubTypeBusinessRule" FromRole="PermitSubTypeBusinessRule" ToRole="BusinessRule" />
+          <NavigationProperty Name="PermitSubType" Relationship="Self.FK_PermitSubTypeBusinessRule_PermitSubType" FromRole="PermitSubTypeBusinessRule" ToRole="PermitSubType" />
+        </EntityType>
+        <EntityType Name="PermitSubTypeProof">
+          <Key>
+            <PropertyRef Name="PermitSubTypeProofID" />
+          </Key>
+          <Property Name="PermitSubTypeProofID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermitSubTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ProofTypeID" Type="Int32" Nullable="false" />
+          <Property Name="IsMandatory" Type="Boolean" />
+          <NavigationProperty Name="PermitSubType" Relationship="Self.FK_PermitSubTypeProof_PermitSubType" FromRole="PermitSubTypeProof" ToRole="PermitSubType" />
+          <NavigationProperty Name="ProofType" Relationship="Self.FK_PermitSubTypeProof_ProofType" FromRole="PermitSubTypeProof" ToRole="ProofType" />
+        </EntityType>
+        <EntityType Name="PermitSubTypeZone">
+          <Key>
+            <PropertyRef Name="PermitSubTypeZoneID" />
+          </Key>
+          <Property Name="PermitSubTypeZoneID" Type="Int32" Nullable="false" />
+          <Property Name="PermitSubTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ZoneID" Type="Int32" Nullable="false" />
+          <Property Name="MaxPermitCount" Type="Int32" />
+          <NavigationProperty Name="Zone" Relationship="Self.FK_PermitSubTypeZone_Zone" FromRole="PermitSubTypeZone" ToRole="Zone" />
+        </EntityType>
+        <EntityType Name="PermitType">
+          <Key>
+            <PropertyRef Name="PermitTypeID" />
+          </Key>
+          <Property Name="PermitTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermitTypeDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AgencyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PermitSubType" Relationship="Self.FK_PermitSubType_PermitType" FromRole="PermitType" ToRole="PermitSubType" />
+        </EntityType>
+        <EntityType Name="ProofType">
+          <Key>
+            <PropertyRef Name="ProofTypeID" />
+          </Key>
+          <Property Name="ProofTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProofTypeDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DocumentProofType" Relationship="Self.FK_DocumentProofType_ProofType" FromRole="ProofType" ToRole="DocumentProofType" />
+          <NavigationProperty Name="PermitSubTypeProof" Relationship="Self.FK_PermitSubTypeProof_ProofType" FromRole="ProofType" ToRole="PermitSubTypeProof" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AgencyId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedById" Type="Int32" />
+          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedById" Type="Int32" />
+          <NavigationProperty Name="Agency" Relationship="Self.FK_Roles_Agency" FromRole="Roles" ToRole="Agency" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRoles_Roles" FromRole="Roles" ToRole="UserRoles" />
+          <NavigationProperty Name="WebUser" Relationship="Self.FK_WebUser_Roles" FromRole="Roles" ToRole="WebUser" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateAbbr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StateName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Template">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TemplateType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TemplateContent" Type="String" MaxLength="2500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AgencyID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedByUserID" Type="Int32" />
+          <Property Name="ModifiedByUserID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_UserRoles_Roles" FromRole="UserRoles" ToRole="Roles" />
+          <NavigationProperty Name="WebUser" Relationship="Self.FK_UserRoles_WebUser" FromRole="UserRoles" ToRole="WebUser" />
+        </EntityType>
+        <EntityType Name="WebUser">
+          <Key>
+            <PropertyRef Name="WebUserID" />
+          </Key>
+          <Property Name="WebUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgencyID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Network" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimeCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateTimeModified" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="EmailOption" Type="Boolean" />
+          <Property Name="Salt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DateTimePasswordModified" Type="DateTime" Precision="3" />
+          <Property Name="ForcePasswordChange" Type="Boolean" />
+          <Property Name="OldPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RoleID" Type="Int32" />
+          <NavigationProperty Name="Agency" Relationship="Self.FK_WebUser_Agency" FromRole="WebUser" ToRole="Agency" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_Car_WebUser" FromRole="WebUser" ToRole="Car" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_WebUser_Roles" FromRole="WebUser" ToRole="Roles" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRoles_WebUser" FromRole="WebUser" ToRole="UserRoles" />
+        </EntityType>
+        <EntityType Name="WebUserLogin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="WebUserID" Type="Guid" Nullable="false" />
+          <Property Name="AuthToken" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="StartDateTime" Type="DateTime" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="DeviceID" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="DeviceType" Type="Byte" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="ZoneID" />
+          </Key>
+          <Property Name="ZoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZoneName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PermitSubTypeZone" Relationship="Self.FK_PermitSubTypeZone_Zone" FromRole="Zone" ToRole="PermitSubTypeZone" />
+        </EntityType>
+        <Association Name="FK_Roles_Agency">
+          <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUser_Agency">
+          <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="WebUser">
+              <PropertyRef Name="AgencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeBusinessRule_PermitSubTypeBusinessRule">
+          <End Role="BusinessRule" Type="Self.BusinessRule" Multiplicity="1" />
+          <End Role="PermitSubTypeBusinessRule" Type="Self.PermitSubTypeBusinessRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessRule">
+              <PropertyRef Name="BusinessRuleID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeBusinessRule">
+              <PropertyRef Name="BusinessRuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Car_WebUser">
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUser">
+              <PropertyRef Name="WebUserID" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="WebUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarModel_CarMake">
+          <End Role="CarMake" Type="Self.CarMake" Multiplicity="1" />
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarMake">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarModel">
+              <PropertyRef Name="CarMakeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentProofType_Document">
+          <End Role="Document" Type="Self.Document" Multiplicity="1" />
+          <End Role="DocumentProofType" Type="Self.DocumentProofType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="DocumentID" />
+            </Principal>
+            <Dependent Role="DocumentProofType">
+              <PropertyRef Name="DocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentProofType_ProofType">
+          <End Role="ProofType" Type="Self.ProofType" Multiplicity="1" />
+          <End Role="DocumentProofType" Type="Self.DocumentProofType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProofType">
+              <PropertyRef Name="ProofTypeID" />
+            </Principal>
+            <Dependent Role="DocumentProofType">
+              <PropertyRef Name="ProofTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubType_PermitType">
+          <End Role="PermitType" Type="Self.PermitType" Multiplicity="1" />
+          <End Role="PermitSubType" Type="Self.PermitSubType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermitType">
+              <PropertyRef Name="PermitTypeID" />
+            </Principal>
+            <Dependent Role="PermitSubType">
+              <PropertyRef Name="PermitTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeBusinessRule_PermitSubType">
+          <End Role="PermitSubType" Type="Self.PermitSubType" Multiplicity="1" />
+          <End Role="PermitSubTypeBusinessRule" Type="Self.PermitSubTypeBusinessRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermitSubType">
+              <PropertyRef Name="PermitSubTypeID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeBusinessRule">
+              <PropertyRef Name="PermitSubTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeProof_PermitSubType">
+          <End Role="PermitSubType" Type="Self.PermitSubType" Multiplicity="1" />
+          <End Role="PermitSubTypeProof" Type="Self.PermitSubTypeProof" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermitSubType">
+              <PropertyRef Name="PermitSubTypeID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeProof">
+              <PropertyRef Name="PermitSubTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeProof_ProofType">
+          <End Role="ProofType" Type="Self.ProofType" Multiplicity="1" />
+          <End Role="PermitSubTypeProof" Type="Self.PermitSubTypeProof" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProofType">
+              <PropertyRef Name="ProofTypeID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeProof">
+              <PropertyRef Name="ProofTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermitSubTypeZone_Zone">
+          <End Role="Zone" Type="Self.Zone" Multiplicity="1" />
+          <End Role="PermitSubTypeZone" Type="Self.PermitSubTypeZone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="ZoneID" />
+            </Principal>
+            <Dependent Role="PermitSubTypeZone">
+              <PropertyRef Name="ZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRoles_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebUser_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WebUser">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRoles_WebUser">
+          <End Role="WebUser" Type="Self.WebUser" Multiplicity="1" />
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebUser">
+              <PropertyRef Name="WebUserID" />
+            </Principal>
+            <Dependent Role="UserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PermitEntitiesDb" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agency" EntityType="Self.Agency" />
+          <EntitySet Name="AgencyPreferences" EntityType="Self.AgencyPreferences" />
+          <EntitySet Name="AuditLog" EntityType="Self.AuditLog" />
+          <EntitySet Name="BusinessRule" EntityType="Self.BusinessRule" />
+          <EntitySet Name="Car" EntityType="Self.Car" />
+          <EntitySet Name="Card" EntityType="Self.Card" />
+          <EntitySet Name="CarMake" EntityType="Self.CarMake" />
+          <EntitySet Name="CarModel" EntityType="Self.CarModel" />
+          <EntitySet Name="Document" EntityType="Self.Document" />
+          <EntitySet Name="DocumentProofType" EntityType="Self.DocumentProofType" />
+          <EntitySet Name="PermitSubType" EntityType="Self.PermitSubType" />
+          <EntitySet Name="PermitSubTypeBusinessRule" EntityType="Self.PermitSubTypeBusinessRule" />
+          <EntitySet Name="PermitSubTypeProof" EntityType="Self.PermitSubTypeProof" />
+          <EntitySet Name="PermitSubTypeZone" EntityType="Self.PermitSubTypeZone" />
+          <EntitySet Name="PermitType" EntityType="Self.PermitType" />
+          <EntitySet Name="ProofType" EntityType="Self.ProofType" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="States" EntityType="Self.States" />
+          <EntitySet Name="Template" EntityType="Self.Template" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" />
+          <EntitySet Name="WebUser" EntityType="Self.WebUser" />
+          <EntitySet Name="WebUserLogin" EntityType="Self.WebUserLogin" />
+          <EntitySet Name="Zone" EntityType="Self.Zone" />
+          <AssociationSet Name="FK_Roles_Agency" Association="Self.FK_Roles_Agency">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUser_Agency" Association="Self.FK_WebUser_Agency">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="WebUser" EntitySet="WebUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeBusinessRule_PermitSubTypeBusinessRule" Association="Self.FK_PermitSubTypeBusinessRule_PermitSubTypeBusinessRule">
+            <End Role="BusinessRule" EntitySet="BusinessRule" />
+            <End Role="PermitSubTypeBusinessRule" EntitySet="PermitSubTypeBusinessRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_WebUser" Association="Self.FK_Car_WebUser">
+            <End Role="WebUser" EntitySet="WebUser" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarModel_CarMake" Association="Self.FK_CarModel_CarMake">
+            <End Role="CarMake" EntitySet="CarMake" />
+            <End Role="CarModel" EntitySet="CarModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentProofType_Document" Association="Self.FK_DocumentProofType_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="DocumentProofType" EntitySet="DocumentProofType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentProofType_ProofType" Association="Self.FK_DocumentProofType_ProofType">
+            <End Role="ProofType" EntitySet="ProofType" />
+            <End Role="DocumentProofType" EntitySet="DocumentProofType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubType_PermitType" Association="Self.FK_PermitSubType_PermitType">
+            <End Role="PermitType" EntitySet="PermitType" />
+            <End Role="PermitSubType" EntitySet="PermitSubType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeBusinessRule_PermitSubType" Association="Self.FK_PermitSubTypeBusinessRule_PermitSubType">
+            <End Role="PermitSubType" EntitySet="PermitSubType" />
+            <End Role="PermitSubTypeBusinessRule" EntitySet="PermitSubTypeBusinessRule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeProof_PermitSubType" Association="Self.FK_PermitSubTypeProof_PermitSubType">
+            <End Role="PermitSubType" EntitySet="PermitSubType" />
+            <End Role="PermitSubTypeProof" EntitySet="PermitSubTypeProof" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeProof_ProofType" Association="Self.FK_PermitSubTypeProof_ProofType">
+            <End Role="ProofType" EntitySet="ProofType" />
+            <End Role="PermitSubTypeProof" EntitySet="PermitSubTypeProof" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermitSubTypeZone_Zone" Association="Self.FK_PermitSubTypeZone_Zone">
+            <End Role="Zone" EntitySet="Zone" />
+            <End Role="PermitSubTypeZone" EntitySet="PermitSubTypeZone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRoles_Roles" Association="Self.FK_UserRoles_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebUser_Roles" Association="Self.FK_WebUser_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="WebUser" EntitySet="WebUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRoles_WebUser" Association="Self.FK_UserRoles_WebUser">
+            <End Role="WebUser" EntitySet="WebUser" />
+            <End Role="UserRoles" EntitySet="UserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PermitsConfigurationModelStoreContainer" CdmEntityContainer="PermitEntitiesDb">
+          <EntitySetMapping Name="Agency">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.Agency">
+              <MappingFragment StoreEntitySet="Agency">
+                <ScalarProperty Name="AgencyID" ColumnName="AgencyID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PriorVendor" ColumnName="PriorVendor" />
+                <ScalarProperty Name="EstimatedAnnualVolume" ColumnName="EstimatedAnnualVolume" />
+                <ScalarProperty Name="CurrentAnnualVolume" ColumnName="CurrentAnnualVolume" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedById" ColumnName="UpdatedById" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgencyPreferences">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.AgencyPreferences">
+              <MappingFragment StoreEntitySet="AgencyPreferences">
+                <ScalarProperty Name="AgencyPreferencesID" ColumnName="AgencyPreferencesID" />
+                <ScalarProperty Name="AgencyID" ColumnName="AgencyID" />
+                <ScalarProperty Name="ServerName" ColumnName="ServerName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="ValidationEngineName" ColumnName="ValidationEngineName" />
+                <ScalarProperty Name="ValidationClassName" ColumnName="ValidationClassName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuditLog">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.AuditLog">
+              <MappingFragment StoreEntitySet="AuditLog">
+                <ScalarProperty Name="AuditLogID" ColumnName="AuditLogID" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessRule">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.BusinessRule">
+              <MappingFragment StoreEntitySet="BusinessRule">
+                <ScalarProperty Name="BusinessRuleID" ColumnName="BusinessRuleID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BusinessFunction" ColumnName="BusinessFunction" />
+                <ScalarProperty Name="MaxLimit" ColumnName="MaxLimit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="WebUserID" ColumnName="WebUserID" />
+                <ScalarProperty Name="CarMake" ColumnName="CarMake" />
+                <ScalarProperty Name="CarModel" ColumnName="CarModel" />
+                <ScalarProperty Name="CarColor" ColumnName="CarColor" />
+                <ScalarProperty Name="CarYear" ColumnName="CarYear" />
+                <ScalarProperty Name="CarLicense" ColumnName="CarLicense" />
+                <ScalarProperty Name="CarState" ColumnName="CarState" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Card">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.Card">
+              <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="WebUserID" ColumnName="WebUserID" />
+                <ScalarProperty Name="CardName" ColumnName="CardName" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="TokenizedCardNumber" ColumnName="TokenizedCardNumber" />
+                <ScalarProperty Name="CardExpiryMonth" ColumnName="CardExpiryMonth" />
+                <ScalarProperty Name="CardExpiryYear" ColumnName="CardExpiryYear" />
+                <ScalarProperty Name="CardFirstSix" ColumnName="CardFirstSix" />
+                <ScalarProperty Name="CardLastFour" ColumnName="CardLastFour" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="ParentCardId" ColumnName="ParentCardId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarMake">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.CarMake">
+              <MappingFragment StoreEntitySet="CarMake">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CarMakeName" ColumnName="CarMakeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarModel">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.CarModel">
+              <MappingFragment StoreEntitySet="CarModel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CarMakeId" ColumnName="CarMakeId" />
+                <ScalarProperty Name="CarModelName" ColumnName="CarModelName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="DocumentDescription" ColumnName="DocumentDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentProofType">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.DocumentProofType">
+              <MappingFragment StoreEntitySet="DocumentProofType">
+                <ScalarProperty Name="DocumentProofTypeID" ColumnName="DocumentProofTypeID" />
+                <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+                <ScalarProperty Name="ProofTypeID" ColumnName="ProofTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermitSubType">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.PermitSubType">
+              <MappingFragment StoreEntitySet="PermitSubType">
+                <ScalarProperty Name="PermitSubTypeID" ColumnName="PermitSubTypeID" />
+                <ScalarProperty Name="PermitTypeID" ColumnName="PermitTypeID" />
+                <ScalarProperty Name="PermitSubTypeDescription" ColumnName="PermitSubTypeDescription" />
+                <ScalarProperty Name="PermitDuration" ColumnName="PermitDuration" />
+                <ScalarProperty Name="PermitDurationUnit" ColumnName="PermitDurationUnit" />
+                <ScalarProperty Name="PermitPrice" ColumnName="PermitPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermitSubTypeBusinessRule">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.PermitSubTypeBusinessRule">
+              <MappingFragment StoreEntitySet="PermitSubTypeBusinessRule">
+                <ScalarProperty Name="PermitSubTypeBusinessRuleID" ColumnName="PermitSubTypeBusinessRuleID" />
+                <ScalarProperty Name="BusinessRuleID" ColumnName="BusinessRuleID" />
+                <ScalarProperty Name="PermitSubTypeID" ColumnName="PermitSubTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermitSubTypeProof">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.PermitSubTypeProof">
+              <MappingFragment StoreEntitySet="PermitSubTypeProof">
+                <ScalarProperty Name="PermitSubTypeProofID" ColumnName="PermitSubTypeProofID" />
+                <ScalarProperty Name="PermitSubTypeID" ColumnName="PermitSubTypeID" />
+                <ScalarProperty Name="ProofTypeID" ColumnName="ProofTypeID" />
+                <ScalarProperty Name="IsMandatory" ColumnName="IsMandatory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermitSubTypeZone">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.PermitSubTypeZone">
+              <MappingFragment StoreEntitySet="PermitSubTypeZone">
+                <ScalarProperty Name="PermitSubTypeZoneID" ColumnName="PermitSubTypeZoneID" />
+                <ScalarProperty Name="PermitSubTypeID" ColumnName="PermitSubTypeID" />
+                <ScalarProperty Name="ZoneID" ColumnName="ZoneID" />
+                <ScalarProperty Name="MaxPermitCount" ColumnName="MaxPermitCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermitType">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.PermitType">
+              <MappingFragment StoreEntitySet="PermitType">
+                <ScalarProperty Name="PermitTypeID" ColumnName="PermitTypeID" />
+                <ScalarProperty Name="PermitTypeDescription" ColumnName="PermitTypeDescription" />
+                <ScalarProperty Name="AgencyID" ColumnName="AgencyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProofType">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.ProofType">
+              <MappingFragment StoreEntitySet="ProofType">
+                <ScalarProperty Name="ProofTypeID" ColumnName="ProofTypeID" />
+                <ScalarProperty Name="ProofTypeDescription" ColumnName="ProofTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="UpdatedById" ColumnName="UpdatedById" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.States">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="StateAbbr" ColumnName="StateAbbr" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Template">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.Template">
+              <MappingFragment StoreEntitySet="Template">
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="TemplateType" ColumnName="TemplateType" />
+                <ScalarProperty Name="TemplateContent" ColumnName="TemplateContent" />
+                <ScalarProperty Name="AgencyID" ColumnName="AgencyID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedByUserID" ColumnName="CreatedByUserID" />
+                <ScalarProperty Name="ModifiedByUserID" ColumnName="ModifiedByUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.UserRoles">
+              <MappingFragment StoreEntitySet="UserRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebUser">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.WebUser">
+              <MappingFragment StoreEntitySet="WebUser">
+                <ScalarProperty Name="WebUserID" ColumnName="WebUserID" />
+                <ScalarProperty Name="AgencyID" ColumnName="AgencyID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Network" ColumnName="Network" />
+                <ScalarProperty Name="DateTimeCreated" ColumnName="DateTimeCreated" />
+                <ScalarProperty Name="DateTimeModified" ColumnName="DateTimeModified" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="EmailOption" ColumnName="EmailOption" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="DateTimePasswordModified" ColumnName="DateTimePasswordModified" />
+                <ScalarProperty Name="ForcePasswordChange" ColumnName="ForcePasswordChange" />
+                <ScalarProperty Name="OldPassword" ColumnName="OldPassword" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebUserLogin">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.WebUserLogin">
+              <MappingFragment StoreEntitySet="WebUserLogin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WebUserID" ColumnName="WebUserID" />
+                <ScalarProperty Name="AuthToken" ColumnName="AuthToken" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+                <ScalarProperty Name="DeviceType" ColumnName="DeviceType" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zone">
+            <EntityTypeMapping TypeName="PermitsConfigurationModel.Zone">
+              <MappingFragment StoreEntitySet="Zone">
+                <ScalarProperty Name="ZoneID" ColumnName="ZoneID" />
+                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

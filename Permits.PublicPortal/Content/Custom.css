@@ -1,0 +1,185 @@
+﻿  
+/*<!-- User Create CSS -->*/
+.panel-heading {
+        background-image: linear-gradient(to bottom,#eed3d7 0,#d00d14 100%) !important;
+    }
+
+    .btn-default {
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.3333333;
+        border-radius: 6px;
+        color: #2A5B8D;
+        background-color: #fff;
+        border-color: #2A5B8D;
+    }
+
+        .btn-default:hover {
+            color: #2A5B8D;
+            background-color: #F1BA3D !important;
+             /*background-color: #2A5B8D !important;*/
+            border-color: #1c3d5e;
+        }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #182e5f;
+        border-color: #182e5f;
+        width: 52%;
+        padding: 10px 16px;
+        font-size: 18px;
+        line-height: 1.3333333;
+        border-radius: 6px;
+    }
+
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #182e5f;
+            border-color: #182e5f;
+        }
+
+    .panel-bg-c {
+        background-color: #E9E581;
+    }
+
+    .bglight {
+        position: relative;
+        background: #E9E581;
+    }
+
+    .tag {
+        display: inline-block;
+        padding: .25em .4em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25rem;
+    }
+
+
+    .tag-pill {
+        padding-right: .6em;
+        padding-left: .6em;
+        border-radius: 10rem;
+    }
+
+    .tag-xa {
+        background-color: #F1BA3D;
+    }
+
+    .float-xs-right {
+        float: right !important;
+    }
+
+    .jp-card-front {
+        width: 81% !important;
+        height: 95% !important;
+    }
+
+    .cursor {
+        cursor: pointer;
+    }
+
+    .text-color-card {
+        color: #C0C0C0 !important;
+    }
+    .text-color-vehicle{
+        color:#013e7f  !important;
+    }
+
+    .mtl-card {
+        margin-left: 10px !important;
+        margin-top: 3px;
+        margin-bottom: 8px;
+    }
+
+    .User-information-heading {
+        margin-left:35px;
+    }
+
+    .user-information-div {
+
+        margin-bottom:10px;
+    }
+
+    .create-card-label {
+
+        margin-left:35px;
+    }
+
+   .create-card-label-hr {
+    margin-bottom: 5px !important;
+    margin-top: 10px !important;
+   }
+
+   .create-card-div {
+       margin-bottom:30px;
+   }
+   .crate-card-image 
+   {
+       width:80%;
+   }
+   .createcard-images {
+       width:65%;float:right;
+   }
+   .Vehicle {
+       margin-left:35px ;margin-top:20px !important;
+   }
+    .Vehicle-hr {
+             margin-bottom:5px !important ;margin-top: 10px !important;
+    }
+
+    .email-label {
+        margin-left:35px;
+    }
+       .email-hr {
+    margin-bottom: 5px !important;
+      }
+       .email-label {
+           margin-left: 19px;
+       }
+
+       .email-span-padding {
+           padding-top: 5px;padding-bottom: 5px;
+       }
+       .email-spam {
+           margin-left: -14px;
+       }
+    /*<!-- _rootLayout CSS -->*/
+       .navbar-inverse {
+                background-image: linear-gradient(to bottom,#00607a 0,#00607a 100%);
+                 border-bottom: 1px solid #038fab;
+        }
+
+
+       .landingpageContainerdiv {
+           padding-top:48px;margin-left:80px;
+       }
+
+       .landingpageactionlink {
+           width:200px;height:70px;
+       }
+
+       .landingpageactionpadding {
+               padding-top: 24px;
+       }
+
+       .Permitdetail-td {
+           padding-top:30px;
+       }
+
+       .Purchasepermit {
+          margin-top:20px;padding-bottom:30px;
+       }
+
+       .buttoncenter {
+           margin-left:33%;
+            
+       }
+    
+      
+      

@@ -1,0 +1,59 @@
+﻿.tfoot {
+    display: table-header-group;
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+.tfoot input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+#targetUL {
+    width: 110px;
+    border: 1px solid silver;
+    margin-top: 2px;
+    list-style: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+#targetUL li {
+    margin-left: -40px;
+    border-bottom: 1px solid silver;
+    height: 26px;
+    padding-left: 5px;
+    padding-top: 8px;
+    cursor: pointer;
+}
+
+tfoot input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+}
+
+.activeli {
+    color: #fff;
+    background: #186163;
+}
+
+.pt-md {
+    padding-top: 15px !important;
+}
+
+.ptb-md {
+    padding: 8px 4px !important;
+}
+
+.btn-text-wrap {
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+}
+

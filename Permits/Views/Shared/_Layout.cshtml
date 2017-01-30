@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        option:checked, option:hover {
+            color: white;
+            background: #c8c8c8;
+        }
+
+        .form-control select:focus, select:active {
+            border-color: #c8c8c8;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px #c8c8c8, 0 0 8px #c8c8c8;
+            box-shadow: inset 0 1px 1px #c8c8c8, 0 0 8px #c8c8c8;
+        }
+
+        #lstview select {
+            color: white;
+            background: #c8c8c8;
+        }
+    </style>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Permits</title>
+    <meta name="description" itemprop="description" content="" />
+    <meta name="keywords" itemprop="keywords" content="" />
+    <meta name="robots" content="noindex,nofollow,noodp" />
+    <meta name="author" content="">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <script src="~/js/jquery-1.11.3.min.js"></script>
+
+    <link href="~/js/DatePicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="~/js/DatePicker/bootstrap.min.js"></script>
+    <link href="~/js/DatePicker/jquery-ui.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="~/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js" type="text/javascript"></script>
+
+    <!-- Added by Kush, Included Required Prerequisites -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/2.9.0/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3.3.2/css/bootstrap.css" />
+
+
+    <!-- Magicsearch Auto Complete CSS -->
+    <link href="~/css/AutoComplete/jquery.magicsearch.css" rel="stylesheet" />
+    <link href="~/css/AutoComplete/normalize.css" rel="stylesheet" />
+    <link href="~/css/AutoComplete/style.css" rel="stylesheet" />
+
+    <!-- Added by Kush, Included Date Range Picker -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker-bs3.css" />
+
+    <!-- Js and Css for MutiSelect dropdown -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" rel="stylesheet" />
+
+
+    <!-- Custom CSS -->
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/jquery.timepicker.css" rel="stylesheet">
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="~/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/css/jasny-bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/fm.scrollator.jquery.css" />
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <link href="~/css/Custom.css" rel="stylesheet" />
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <!-- <div id="wrapper" class="toggled"> -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="navbar-header hidden-lg">
+            <button type="button" class="navbar-toggle sidebar-toggle" data-toggle="collapse" data-target=".sidebar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-lg" href="@Url.Action("Index","Home")"><img src="~/img/Side_Menu/IPS_Logo.png" class="img-responsive"></a>
+        </div>
+
+        <aside class="sidebar navbar-default" id="sidebar-wrapper" role="navigation">
+            <div class="sidebar navbar-collapse collapse padding_none">
+                <ul class="nav sidebar-nav">
+                    @*<li class="logo_ips hidden-xs">
+                            <a class="navbar-brand" href="@Url.Action("Index","Home")"><img src="~/img/Side_Menu/IPS_Logo.png" class="img-responsive"></a>
+                        </li>*@
+                    <li class="sidebar-search" style="margin-top: -4px;">
+                        <div class="candidate_name">
+                            <div class="candidate_name_xm">
+                                <img src="~/img/user.png" width="25" class="">
+                            </div>
+                            <div class="">
+                                <h1 id="customername">CustomerName</h1>
+                                <p id="username">UserName</p>
+                                <span><a href="@Url.Action("Logout", "Profile", new { area = "" })">Logout</a></span>
+                            </div>
+                        </div>
+                    </li>
+                    <div class="panel-group" id="accordion">
+                        @*Condition to check if user has access to RMA module (if count is > than 0 then User has access to 1 or more forms)*@
+                        @*@if (formModelList != null)
+                            {
+                                if (formModelList.Where(x => x.FormSortOrder == 1).Count() > 0)
+                                {*@
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        <img src="~/img/Side_Menu/RME.png" class="" /> Account Setup
+                                        <span class="fa fa-plus pull-right margin_top"></span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <a href="@Url.Action("Register", "Account")" class="tab_sidebar" name="NewAccount">
+                                        <i class="fa fa-user-plus"></i> New Account
+                                    </a>
+                                    <a href="@Url.Action("UserList", "Home")" class="tab_sidebar" name="Users">
+                                        <i class="fa fa-users"></i>  Users
+                                    </a>
+                                    <a href="@Url.Action("PermitList", "Home")" class="tab_sidebar" name="PermitList">
+                                        <i class="fa fa-users"></i>  Permits
+                                    </a>
+                                    <a href="@Url.Action("AccountHistory", "Home")" class="tab_sidebar" name="AccountHistory">
+                                        <i class="fa fa-users"></i>  Account History
+                                    </a>
+                                    <a href="@Url.Action("Payments", "Home")" class="tab_sidebar" name="Payments">
+                                        <i class="fa fa-users"></i>  Payments
+                                    </a>
+                                    @*@foreach (RMA.Core.Domain.ViewModels.FormModel formModel in formModelList)
+                                        {
+                                            if (formModel.FormSortOrder == 1)
+                                            {
+                                                string imageName = string.Format("/img/Side_Menu/{0}.png", formModel.ActionName);
+                                                <a href="@formModel.FormPath" class="tab_sidebar" name="@formModel.ActionName">
+                                                    <img src="@imageName" class="" />@formModel.FormCaption
+                                                </a>
+                                            }
+                                        }*@
+                                </div>
+                            </div>
+                        </div>
+                        @*}
+                            }*@
+
+                        @*@if (formModelList != null)
+                            {
+                                if (formModelList.Where(x => x.FormSortOrder == 4).Count() > 0)
+                                {*@
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" href="@Url.Action("Reports","Home")">
+                                        <img src="~/img/Side_Menu/IPS_reports.png" class="" /> Report
+                                        @*<span class="fa fa-plus pull-right margin_top"></span>*@
+                                    </a>
+                                </h4>
+                            </div>
+
+                        </div>
+                        @*}
+                            }*@
+
+
+                    </div>
+
+
+                </ul>
+            </div>
+        </aside>
+
+        <div id="page-wrapper" class="content-wrapper">
+
+            <div class="content-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button type="button" id="btnCollapse" class="hamburger is-closed hidden-xs" data-toggle="offcanvas">
+                    <span class="hamb-top">
+                    </span>
+                </button>
+                @using (Html.BeginForm("SmartSearch", "Home", new { area = "" }))
+                {
+                    <div class="top_serach">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="smart search..." id="searchText" name="searchText" min="4" style="border-top-left-radius: 4px;border-bottom-left-radius: 4px;">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default ser_btn" type="submit">search</button>
+                            </span>
+                        </div>
+                    </div>
+                }
+            </div>
+            @*@if (Session["UserType"] != null)
+                {
+                    if (Session["UserType"].ToString() == "IPSUser")
+                    {
+                        <div class="col-md-4 pull-right text-right">
+                            @Html.DropDownList("customer", new SelectList(customerInfo.Customerlist, "CustomerID", "CompanyName", Convert.ToInt32(Session["Customer"])), "Select Customer", new { @class = "form-control input-sm" })
+                        </div>
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/Home/Index");
+                }*@
+            <!-- /#page-content-wrapper -->
+            @RenderBody()
+        </div>
+    </div>
+    <!-- /#wrapper -->
+    <script>
+        $(document).ready(function () {
+
+            var shownOnRefresh = [];
+            localStorage.setItem('shownOnRefresh', JSON.stringify(shownOnRefresh));
+
+            $('.panel-collapse').on('shown.bs.collapse', function () {
+                $(this).parent().find(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
+                shownOnRefresh = JSON.parse(localStorage.getItem('shownOnRefresh'));
+                if ($.inArray($(this).attr('id'), shownOnRefresh) == -1) {
+                    shownOnRefresh.push($(this).attr('id'));
+                };
+                localStorage.setItem('shownOnRefresh', JSON.stringify(shownOnRefresh));
+            });
+            $('.panel-collapse').on('hidden.bs.collapse', function () {
+                $(this).parent().find(".fa-minus").removeClass("fa-minus").addClass("fa-plus");
+                shownOnRefresh = JSON.parse(localStorage.getItem('shownOnRefresh'));
+                shownOnRefresh.splice($.inArray($(this).attr('id'), shownOnRefresh), 1);//remove item from array
+                localStorage.setItem('shownOnRefresh', JSON.stringify(shownOnRefresh));
+            });
+
+        });
+    </script>
+
+    @*<script src="~/js/bootstrap.min.js"></script>*@
+    @*<script src="~/js/jquery-1.11.3.min.js"></script>
+        <script src="~/js/jquery.timepicker.js"></script>*@
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/DatePicker/moment.js"></script>
+    <script src="~/js/DatePicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/js/DatePicker/jquery-ui.js"></script>
+
+    <script src="~/js/custom.js"></script>
+    <script type="text/javascript" src="~/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/jasny-bootstrap.js"></script>
+    <script type="text/javascript" src="~/js/fm.scrollator.jquery.js"></script>
+
+    <!-- Magicsearch Auto Complete JavaScript -->
+    <script src="~/js/Autocompletejs/jquery.magicsearch.js"></script>
+
+    <!-- Custom JS Files -->
+    <script src="~/js/CustomJS/LayOutEvents.js"></script>
+    <script src="~/js/CustomJS/LayOutDesign.js"></script>
+    <script src="~/js/Loader.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(".date-picker").datepicker()
+        $('.date-picker').on('focus', function () {
+            $(this).trigger('blur');
+            $(this).siblings('.datepicker').datepicker('show')
+        });
+        $(".date-picker").on("change", function () {
+            var id = $(this).attr("id");
+            var val = $("label[for='" + id + "']").text();
+            $("#msg").text(val + " changed");
+        });
+        $(function () {
+            $("#lstview").customScroll({ scrollbarWidth: 5 });
+        });
+        $("#material_used").hide();
+        function show_hode_div() {
+            $("#material_used").show();
+        }
+
+        //$('.nav .panel-body a').on('click', function(){
+        //    if($('.navbar-toggle').css('display') !='none'){
+        //        $(".navbar-toggle").trigger( "click" );
+        //    }
+        //});
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
